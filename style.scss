@@ -1,4 +1,6 @@
 $input-border-rad: .25em;
+$info-text: 0.8em;
+$heading-text: 1.5em;
 
 @mixin center-row {
     display: flex;
@@ -14,9 +16,18 @@ $input-border-rad: .25em;
     flex-direction: column;
 }
 
+@mixin input-props {
+    border-radius: $input-border-rad;
+    background-color: lightgrey;
+    text-align: center;
+    &:hover {
+        box-shadow: 0 0 0 1px black;
+    }
+}
+
 html {
     @include center-column;
-    background: black;
+    background: rgb(131, 130, 130);
     width: 100%;
     height: 100%;
 }
@@ -28,45 +39,85 @@ body {
     padding: 0;
     max-width: 60em;
     min-width: 60em;
-    height: 100%;
+    height: auto;
     margin-top: 2em;
 }
 
-.title-bar-container {
+#title-bar-container {
     @include center-row;
     width: 100%;
     height: 10em;
+
+    .character-name-container {
+        @include center-column;
+        height: 100%;
+        min-width: 40%;
+
+        .character-name-input {
+            @include input-props;
+            height: 3em;
+            width: 80%;
+        }
+    }
+    
+    .player-info-container {
+        @include center-row;
+        min-width: 60%;
+        display: flex;
+        flex-wrap: wrap;
+
+        .player-info-input-container {
+            padding: .05em 0.25em;
+        }
+
+        .player-info-input {
+            @include input-props;
+            height: 2.5em;
+            width: 12em;
+        }
+        
+        .player-info-text {
+            font-size: $info-text;
+        }
+    }
 }
 
-.character-name-container {
-    @include center-column;
-    height: 100%;
-    min-width: 40%;
+#stats-column-container {
+    background-color: lightgreen;
+
+    #ability-scores-column-container {
+        @include center-column;
+        width: 15%;
+        background-color: lightcoral;
+
+        .ability-score-container {
+            @include center-column;
+            background-color: white;
+            font-size: $info-text;
+            border: solid black 1px;
+            margin: 0.5em 0em;
+            padding: 0.25em;
+            border-radius: 1em;
+        }
+
+        .ability-score-modifier-input {
+            @include input-props;
+            height: 2.5em;
+            width: 4em;
+            margin: 0.5em;
+            font-size: $heading-text;
+        }
+
+        .ability-score-input {
+            @include input-props;
+            margin-top: -5px;
+            font-size: $info-text;
+            height: 2em;
+            width: 4em;
+            border: solid black 1px;
+        }
+    }
 }
 
-.character-name-input {
-    border-radius: $input-border-rad;
-    height: 3em;
-    width: 80%;
-}
 
-.player-info-container {
-    @include center-row;
-    min-width: 60%;
-    display: flex;
-    flex-wrap: wrap;
-}
 
-.player-info-input-container {
-    padding: .05em 0.25em;
-}
-
-.player-info-input {
-    border-radius: $input-border-rad;
-    height: 2.5em;
-    width: 12em;
-}
-
-.player-info-text {
-    font-size: 0.8em;
-}
