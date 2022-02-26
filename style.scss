@@ -16,7 +16,30 @@ $heading-text: 1.5em;
     flex-direction: column;
 }
 
-@mixin input-props {
+@mixin skill-item {
+    width: 90%;
+    border: double black 4px;
+
+    .skill-item-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0.15em 0;
+        font-size: $info-text;
+
+        .skill-item-modifier-input {
+            width: 1.5em;
+            margin: 0 0.8em 0 0.15em;
+        }
+    }
+    
+    .skill-container-title {
+        @include center-row;
+        width: 100%;
+    }
+}
+
+input {
     border-radius: $input-border-rad;
     background-color: lightgrey;
     text-align: center;
@@ -24,6 +47,7 @@ $heading-text: 1.5em;
         box-shadow: 0 0 0 1px black;
     }
 }
+
 
 html {
     @include center-column;
@@ -54,7 +78,6 @@ body {
         min-width: 40%;
 
         .character-name-input {
-            @include input-props;
             height: 3em;
             width: 80%;
         }
@@ -71,7 +94,6 @@ body {
         }
 
         .player-info-input {
-            @include input-props;
             height: 2.5em;
             width: 12em;
         }
@@ -83,6 +105,8 @@ body {
 }
 
 #stats-column-container {
+    display: flex;
+    justify-content: flex-start;
     background-color: lightgreen;
 
     #ability-scores-column-container {
@@ -101,7 +125,6 @@ body {
         }
 
         .ability-score-modifier-input {
-            @include input-props;
             height: 2.5em;
             width: 4em;
             margin: 0.5em;
@@ -109,12 +132,49 @@ body {
         }
 
         .ability-score-input {
-            @include input-props;
             margin-top: -5px;
             font-size: $info-text;
             height: 2em;
             width: 4em;
             border: solid black 1px;
+        }
+    }
+
+    #skills-column-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: lightgoldenrodyellow;
+
+        .flag-info-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            border: solid black 2px;
+            padding: 0.25em;
+            font-size: $info-text;
+            width: 15em;
+            margin: 0.25em 0.5em;
+
+            .flag-info-input {
+                height: 2em;
+                width: 2em;
+            }
+
+            .flag-info-text-container {
+                @include center-row;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .saving-throw-container {
+            @include skill-item;
+        }
+
+        .skill-container {
+            margin-top: 1em;
+            @include skill-item;
         }
     }
 }
